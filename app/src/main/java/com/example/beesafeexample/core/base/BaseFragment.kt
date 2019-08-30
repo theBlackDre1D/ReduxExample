@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 abstract class BaseFragment: Fragment() {
 
     abstract val layoutResource: Int
-    private val activity: BaseActivity
+    protected val activity: BaseActivity
         get() = getActivity() as BaseActivity
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

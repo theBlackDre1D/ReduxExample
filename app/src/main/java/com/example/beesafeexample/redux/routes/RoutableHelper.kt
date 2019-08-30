@@ -4,10 +4,8 @@ import android.content.Context
 import android.content.Intent
 import com.example.beesafeexample.AppController
 import com.example.beesafeexample.core.base.BaseFragment
-import com.example.beesafeexample.core.base.BaseInputFragment
 import com.example.beesafeexample.core.navigation.Navigation
-import com.example.beesafeexample.mainStore
-import com.example.beesafeexample.ui.LoginActivity
+import com.example.beesafeexample.ui.activities.LoginActivity
 
 object RoutableHelper {
 

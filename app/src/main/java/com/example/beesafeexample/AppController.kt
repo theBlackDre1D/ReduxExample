@@ -73,10 +73,10 @@ class AppController: Application() {
         )
     }
 
-    private fun getLogedInState(): LoginActions.LoggedInDataSaveAction {
+    private fun getLogedInState(): LoginActions.LoggedInDataSave {
         val loggedIn = if (UserManager.isLogin) LoggedInState.LOG_IN else LoggedInState.NOT_LOG_IN
         val userName = UserManager.userName
-        return LoginActions.LoggedInDataSaveAction(
+        return LoginActions.LoggedInDataSave(
             userName ?: "", loggedIn)
     }
 

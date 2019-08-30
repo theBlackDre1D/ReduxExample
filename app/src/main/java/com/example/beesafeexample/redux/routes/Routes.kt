@@ -2,7 +2,7 @@ package com.example.beesafeexample.redux.routes
 
 import android.content.Context
 import android.util.Log
-import com.example.beesafeexample.ui.LoginFragment
+import com.example.beesafeexample.ui.fragments.LoginFragment
 import org.rekotlinrouter.Routable
 import org.rekotlinrouter.RouteElementIdentifier
 import org.rekotlinrouter.RoutingCompletionHandler
@@ -22,11 +22,12 @@ class RootRoutable(val context: Context): Routable {
         animated: Boolean,
         completionHandler: RoutingCompletionHandler
     ): Routable {
-        when (to) {
-            loginFragmentRoute -> return RoutableHelper.backStackFragmentRoutable(LoginFragment(LoginFragment.Params({  })))
-        }
-
-        return this
+//        when (to) {
+//            loginFragmentRoute -> return RoutableHelper.backStackFragmentRoutable(LoginFragment(LoginFragment.Params({  })))
+//        }
+//
+//        return this
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     // ["Home", "User"] to ["Home"]
@@ -100,10 +101,18 @@ class LoginActivityRoutable(val context: Context): Routable {
         completionHandler: RoutingCompletionHandler
     ): Routable {
         when (routeElementIdentifier) {
-            loginFragmentRoute -> return RoutableHelper.backStackFragmentRoutable(LoginFragment(LoginFragment.Params({  })))
+            loginFragmentRoute -> return RoutableHelper.backStackFragmentRoutable(
+                LoginFragment(
+                    LoginFragment.Params({ })
+                )
+            )
         }
 
-        return RoutableHelper.backStackFragmentRoutable(LoginFragment(LoginFragment.Params({  })))
+        return RoutableHelper.backStackFragmentRoutable(
+            LoginFragment(
+                LoginFragment.Params({ })
+            )
+        )
     }
 
 }

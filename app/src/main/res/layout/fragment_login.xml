@@ -8,17 +8,28 @@
     >
 
     <EditText
-        android:id="@+id/etEmail"
+        android:id="@+id/etPhoneNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
+        android:inputType="phone"
+        android:hint="Enter your phone number..."
+        />
+
+    <Button
+        android:id="@+id/bGetCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Get SMS verification code"
         />
 
     <EditText
-        android:id="@+id/etPassword"
+        android:id="@+id/etCode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
+        android:inputType="text"
+        android:hint="Enter code from SMS"
+        android:layout_marginTop="16dp"
         />
 
     <Button

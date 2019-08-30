@@ -1,4 +1,4 @@
-package com.example.beesafeexample.ui
+package com.example.beesafeexample.ui.activities
 
 import android.os.Bundle
 import com.example.beesafeexample.R

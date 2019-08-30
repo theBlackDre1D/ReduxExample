@@ -8,12 +8,7 @@ data class AuthenticationState(
     var loggedInState: LoggedInState,
     var userName: String,
     var isFetching: Boolean = false,
-    var isCompleted: Boolean = false,
-    var errorMessage: String? = null,
-    var fullName: String? = null,
-    var location:String? = null,
-    var avatarUrl:String? = null,
-    var createdAt: String? = null
+    var isCompleted: Boolean = false
 ): StateType
 
 enum class LoggedInState {

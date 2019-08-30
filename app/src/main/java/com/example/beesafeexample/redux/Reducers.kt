@@ -25,14 +25,21 @@ fun authenticationReducer(action: Action,
     val newState = state ?: AuthenticationState(LoggedInState.NOT_LOG_IN, "")
     when(action) {
         is LoginActions.LoginStarted -> return newState.copy(isFetching = true)
-        is LoginActions.LoginCompletedAction -> {
+        is LoginActions.LoginCompleted -> {
             return newState.copy(isFetching = false) // here can be added more attributes
         }
-        is LoginActions.LoggedInDataSaveAction -> {
+        is LoginActions.LoggedInDataSave -> {
             return newState.copy(
                 isCompleted = true,
                 isFetching = false,
                 loggedInState = LoggedInState.LOG_IN)
+        }
+        is LoginActions.LoginFailed -> {
+            return newState.copy(
+                isFetching = false,
+                isCompleted = true,
+                loggedInState = LoggedInState.NOT_LOG_IN
+            )
         }
     }
     return newState
