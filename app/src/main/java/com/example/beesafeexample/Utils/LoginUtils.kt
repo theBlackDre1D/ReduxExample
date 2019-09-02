@@ -23,10 +23,11 @@ object LoginUtils {
 
         override fun onCodeSent(verificationId: String, code: PhoneAuthProvider.ForceResendingToken) {
             smsCode = verificationId
+            mainStore.dispatch(LoginActions.WaitingForCode())
         }
     }
 
-     fun setPhoneAuthentification(number: String) {
+    fun setPhoneAuthentification(number: String) {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
             number,
             60,
@@ -34,6 +35,11 @@ object LoginUtils {
             AppController.currentActivity.get()!!,
             callbacks
         )
+    }
+
+    fun verifySMSCode(code: String) {
+        val credential = PhoneAuthProvider.getCredential(smsCode, code)
+        signInWithPhoneAuthCredential(credential)
     }
 
     private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {

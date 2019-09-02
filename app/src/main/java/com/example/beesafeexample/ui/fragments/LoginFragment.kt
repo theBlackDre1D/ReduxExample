@@ -9,7 +9,8 @@ import com.example.beesafeexample.redux.states.AuthenticationState
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.rekotlin.StoreSubscriber
 
-class LoginFragment(override var params: Params?): BaseInputFragment<LoginFragment.Params>(params), StoreSubscriber<AuthenticationState> {
+class LoginFragment(override var params: Params?
+): BaseInputFragment<LoginFragment.Params>(params), StoreSubscriber<AuthenticationState> {
 
     data class Params(
         val onNext: () -> Unit
@@ -24,6 +25,13 @@ class LoginFragment(override var params: Params?): BaseInputFragment<LoginFragme
         super.setupUI()
 
         setupButtons()
+        setupSubscription()
+    }
+
+    private fun setupSubscription() {
+        mainStore.subscribe(this) {
+            it.select { it.authenticationState }.skipRepeats { oldState, newState ->  oldState == newState }
+        }
     }
 
     private fun setupButtons() {
@@ -31,7 +39,9 @@ class LoginFragment(override var params: Params?): BaseInputFragment<LoginFragme
             mainStore.dispatch(LoginActions.RequestSMSCode(etPhoneNumber.getFullText()))
         }
 
-        bLogin
+        bLogin.setOnClickListener {
+            mainStore.dispatch(LoginActions.VerifySMSCode(etCode.getFullText()))
+        }
     }
 
 

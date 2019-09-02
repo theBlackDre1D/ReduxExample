@@ -12,6 +12,9 @@ internal val firebaseMiddleware: Middleware<AppState> = { dispatch, getState ->
                 is LoginActions.RequestSMSCode -> {
                     LoginUtils.setPhoneAuthentification(action.number)
                 }
+                is LoginActions.VerifySMSCode -> {
+                    LoginUtils.verifySMSCode(action.code)
+                }
                 // can add more of them
             }
             next(action)

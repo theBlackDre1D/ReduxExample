@@ -24,7 +24,10 @@ fun authenticationReducer(action: Action,
 
     val newState = state ?: AuthenticationState(LoggedInState.NOT_LOG_IN, "")
     when(action) {
+        is LoginActions.RequestSMSCode -> return newState.copy(isFetching = true)
+        is LoginActions.VerifySMSCode -> return newState.copy(isFetching = true)
         is LoginActions.LoginStarted -> return newState.copy(isFetching = true)
+        is LoginActions.WaitingForCode -> return newState.copy(isFetching = false)
         is LoginActions.LoginCompleted -> {
             return newState.copy(isFetching = false) // here can be added more attributes
         }

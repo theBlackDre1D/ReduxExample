@@ -13,7 +13,7 @@ class LoginActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_main)
 
         val routes =  arrayListOf(mainActivityRoute, loginActivityRoute, loginFragmentRoute)
         val action = SetRouteAction(routes)
