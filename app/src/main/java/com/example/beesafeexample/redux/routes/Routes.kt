@@ -3,6 +3,8 @@ package com.example.beesafeexample.redux.routes
 import android.content.Context
 import android.util.Log
 import com.example.beesafeexample.ui.fragments.LoginFragment
+import com.example.beesafeexample.ui.fragments.UserContentFragment
+import com.example.beesafeexample.ui.fragments.UserDocumentsFragment
 import org.rekotlinrouter.Routable
 import org.rekotlinrouter.RouteElementIdentifier
 import org.rekotlinrouter.RoutingCompletionHandler
@@ -11,6 +13,8 @@ import org.rekotlinrouter.RoutingCompletionHandler
 val loginActivityRoute: RouteElementIdentifier = "LoginActivity"
 val mainActivityRoute: RouteElementIdentifier = "MainActivity"
 val loginFragmentRoute: RouteElementIdentifier = "LoginFragment"
+val userContentRoute: RouteElementIdentifier = "UserContentFragment"
+val userDocumentsRoute: RouteElementIdentifier = "UserDocumentsFragment"
 
 
 class RootRoutable(val context: Context): Routable {
@@ -22,12 +26,8 @@ class RootRoutable(val context: Context): Routable {
         animated: Boolean,
         completionHandler: RoutingCompletionHandler
     ): Routable {
-//        when (to) {
-//            loginFragmentRoute -> return RoutableHelper.backStackFragmentRoutable(LoginFragment(LoginFragment.Params({  })))
-//        }
-//
-//        return this
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+        return this
     }
 
     // ["Home", "User"] to ["Home"]
@@ -52,7 +52,12 @@ class MainActivityRouteble(val context: Context): Routable{
         animated: Boolean,
         completionHandler: RoutingCompletionHandler
     ): Routable {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        when (to) {
+            userContentRoute -> RoutableHelper.backStackFragmentRoutable(UserContentFragment())
+            userDocumentsRoute -> RoutableHelper.backStackFragmentRoutable(UserDocumentsFragment())
+        }
+
+        return this
     }
 
     override fun popRouteSegment(
@@ -70,6 +75,8 @@ class MainActivityRouteble(val context: Context): Routable{
     ): Routable {
         when (routeElementIdentifier) {
             loginActivityRoute -> return RoutableHelper.loginActivityRoutable(context)
+            userContentRoute -> return RoutableHelper.backStackFragmentRoutable(UserContentFragment())
+            userDocumentsRoute -> RoutableHelper.backStackFragmentRoutable(UserDocumentsFragment())
         }
 
         return RoutableHelper.mainActivityRoutable(context)
@@ -92,7 +99,7 @@ class LoginActivityRoutable(val context: Context): Routable {
         animated: Boolean,
         completionHandler: RoutingCompletionHandler
     ) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
     override fun pushRouteSegment(

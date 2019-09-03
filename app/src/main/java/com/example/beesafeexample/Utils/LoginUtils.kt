@@ -2,6 +2,7 @@ package com.example.beesafeexample.Utils
 
 import com.example.beesafeexample.AppController
 import com.example.beesafeexample.mainStore
+import com.example.beesafeexample.managers.UserManager
 import com.example.beesafeexample.redux.actions.LoginActions
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
@@ -14,7 +15,6 @@ object LoginUtils {
     private var smsCode = ""
     private val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
         override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-            signInWithPhoneAuthCredential(credential)
         }
 
         override fun onVerificationFailed(exception: FirebaseException) {
@@ -45,6 +45,7 @@ object LoginUtils {
     private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
         auth.signInWithCredential(credential).addOnCompleteListener { task ->
             if (task.isSuccessful) {
+                UserManager.isLogin = true
                 mainStore.dispatch(LoginActions.LoginCompleted(""))
             } else {
                 mainStore.dispatch(LoginActions.LoginFailed("Verification not successful"))

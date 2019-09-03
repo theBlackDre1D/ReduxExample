@@ -15,7 +15,7 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val routes =  arrayListOf(mainActivityRoute, loginActivityRoute, loginFragmentRoute)
+        val routes= arrayListOf(mainActivityRoute, loginActivityRoute, loginFragmentRoute)
         val action = SetRouteAction(routes)
         mainStore.dispatch(action)
     }

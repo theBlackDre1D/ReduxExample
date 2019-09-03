@@ -13,6 +13,7 @@ import com.example.beesafeexample.redux.middleware.firebaseMiddleware
 import com.example.beesafeexample.redux.routes.RootRoutable
 import com.example.beesafeexample.redux.states.AppState
 import com.example.beesafeexample.redux.states.AuthenticationState
+import com.example.beesafeexample.redux.states.DocumentState
 import com.example.beesafeexample.redux.states.LoggedInState
 import com.pixplicity.easyprefs.library.Prefs
 import org.rekotlin.Store
@@ -55,7 +56,7 @@ class AppController: Application() {
 
         val loginState = getLogedInState()
         val authenticationState = AuthenticationState(loginState.loggedInState, loginState.userName)
-        val state = AppState(NavigationState(), authenticationState)
+        val state = AppState(NavigationState(), authenticationState, DocumentState())
 
         mainStore = Store(
             state = state,

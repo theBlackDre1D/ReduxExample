@@ -6,10 +6,15 @@ import com.example.beesafeexample.AppController
 import com.example.beesafeexample.core.base.BaseFragment
 import com.example.beesafeexample.core.navigation.Navigation
 import com.example.beesafeexample.ui.activities.LoginActivity
+import com.example.beesafeexample.ui.activities.MainActivity
 
 object RoutableHelper {
 
     fun mainActivityRoutable(context: Context): MainActivityRouteble {
+        val intent = Intent(context, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        context.startActivity(intent)
+
         return MainActivityRouteble(context)
     }
 

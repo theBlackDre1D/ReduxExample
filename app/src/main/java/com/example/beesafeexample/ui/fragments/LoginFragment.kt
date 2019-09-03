@@ -5,12 +5,19 @@ import com.example.beesafeexample.core.base.BaseInputFragment
 import com.example.beesafeexample.core.extension.getFullText
 import com.example.beesafeexample.mainStore
 import com.example.beesafeexample.redux.actions.LoginActions
+import com.example.beesafeexample.redux.routes.loginActivityRoute
+import com.example.beesafeexample.redux.routes.loginFragmentRoute
+import com.example.beesafeexample.redux.routes.mainActivityRoute
+import com.example.beesafeexample.redux.routes.userContentRoute
+import com.example.beesafeexample.redux.states.AppState
 import com.example.beesafeexample.redux.states.AuthenticationState
+import com.example.beesafeexample.redux.states.LoggedInState
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.rekotlin.StoreSubscriber
+import org.rekotlinrouter.SetRouteAction
 
 class LoginFragment(override var params: Params?
-): BaseInputFragment<LoginFragment.Params>(params), StoreSubscriber<AuthenticationState> {
+): BaseInputFragment<LoginFragment.Params>(params) {
 
     data class Params(
         val onNext: () -> Unit
@@ -25,13 +32,6 @@ class LoginFragment(override var params: Params?
         super.setupUI()
 
         setupButtons()
-        setupSubscription()
-    }
-
-    private fun setupSubscription() {
-        mainStore.subscribe(this) {
-            it.select { it.authenticationState }.skipRepeats { oldState, newState ->  oldState == newState }
-        }
     }
 
     private fun setupButtons() {
@@ -44,14 +44,16 @@ class LoginFragment(override var params: Params?
         }
     }
 
-
-
-    override fun newState(state: AuthenticationState) {
-        showOrHideLoading(state.isFetching)
+    override fun newState(state: AppState) {
+        showOrHideLoading(state.authenticationState.isFetching)
+        if (state.authenticationState.loggedInState == LoggedInState.LOG_IN) navigateToUserDetail()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        mainStore.unsubscribe(this)
+
+    private fun navigateToUserDetail() {
+        val routes= arrayListOf(mainActivityRoute, userContentRoute)
+        val action = SetRouteAction(routes)
+        mainStore.dispatch(action)
     }
+
 }

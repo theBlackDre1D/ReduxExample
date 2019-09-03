@@ -2,11 +2,11 @@ package com.example.beesafeexample.net
 
 import retrofit2.Retrofit
 
-interface API {
+interface FirebaseAPI {
 
 
     companion object {
-//        fun create(): API {
+//        fun create(): FirebaseAPI {
 //            return Retrofit.Builder()
 //                .
 //        }

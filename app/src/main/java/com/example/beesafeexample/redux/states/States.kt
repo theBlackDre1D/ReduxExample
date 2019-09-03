@@ -1,6 +1,8 @@
 package com.example.beesafeexample.redux.states
 
+import com.example.beesafeexample.models.User
 import org.rekotlin.StateType
+import org.rekotlinrouter.HasNavigationState
 import org.rekotlinrouter.NavigationState
 
 
@@ -18,11 +20,12 @@ enum class LoggedInState {
 
 data class AppState(
     override var navigationState: NavigationState,
-    var authenticationState: AuthenticationState
+    var authenticationState: AuthenticationState,
+    var documentsState: DocumentState
 ): StateType, HasNavigationState
 
-
-interface HasNavigationState {
-    var navigationState: NavigationState
-}
+data class DocumentState(
+    var documents: List<User>? = null,
+    var isFetching: Boolean = true
+): StateType
 

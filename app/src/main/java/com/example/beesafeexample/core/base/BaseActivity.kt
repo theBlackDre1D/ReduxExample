@@ -1,6 +1,5 @@
 package com.example.beesafeexample.core.base
 
-import android.content.Context
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.widget.Toast
@@ -17,16 +16,16 @@ abstract class BaseActivity: AppCompatActivity() {
 
     open fun setupUI() {}
 
-    fun showMessage(context: Context, message: String) {
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+    fun showMessage(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
-    fun showErrorToast(context: Context, message: String) {
-        Toasty.error(context, message, Toast.LENGTH_SHORT, true).show()
+    fun showErrorToast(message: String) {
+        Toasty.error(this, message, Toast.LENGTH_SHORT, true).show()
     }
 
-    fun showSuccessToast(context: Context, message: String) {
-        Toasty.success(context, message, Toast.LENGTH_SHORT, true).show()
+    fun showSuccessToast(message: String) {
+        Toasty.success(this, message, Toast.LENGTH_SHORT, true).show()
     }
 
     override fun onBackPressed() {
